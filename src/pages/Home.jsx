@@ -4,6 +4,7 @@ import { FiSearch } from "react-icons/fi";
 import { getMealsByCategory } from "../services/mealApi";
 import RecipeCard from "../components/recipe/RecipeCard";
 import heroFood from "../assets/hero-food.png";
+import cookFeature from "../assets/cook-feature.png";
 import RecentlyViewed from "../components/recipe/RecentlyViewed";
 
 
@@ -71,7 +72,7 @@ function Home() {
 
       <section className="relative overflow-hidden bg-orange-50 dark:bg-gray-950">
         <div className="max-w-7xl mx-auto px-6 py-16 md:py-20 lg:py-24">
-            <div className="grid lg:grid-cols-2 gap-14 lg:gap-8 items-center">
+            <div className="grid md:grid-cols-2 gap-10 lg:gap-8 items-center">
 
             {/* Left Content */}
             <div className="order-1">
@@ -80,7 +81,7 @@ function Home() {
                 DISCOVER • COOK • ENJOY
                 </p>
 
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-tight mt-4">
+                <h1 className="text-4xl md:text-4xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-tight mt-4">
                 Delicious recipes,
                 <span className="block text-orange-500">
                     made simple.
@@ -94,18 +95,18 @@ function Home() {
                 </p>
 
                 {/* Buttons */}
-                <div className="flex flex-wrap gap-4 mt-8">
+                <div className="flex flex-wrap gap-3 mt-8">
 
                 <Link
                     to="/explore"
-                    className="bg-orange-500 text-white px-7 py-3.5 rounded-full font-semibold hover:bg-orange-600 transition"
+                    className="bg-orange-500 text-white px-5 md:px-5 lg:px-7 py-3 md:py-3 lg:py-3.5 rounded-full font-semibold hover:bg-orange-600 transition whitespace-nowrap"
                 >
                     Explore Recipes
                 </Link>
 
                 <Link
                     to="/cook"
-                    className="border border-orange-500 text-orange-500 px-7 py-3.5 rounded-full font-semibold hover:bg-orange-100 transition"
+                    className="border border-orange-500 text-orange-500 px-5 md:px-5 lg:px-7 py-3 md:py-3 lg:py-3.5 rounded-full font-semibold hover:bg-orange-100 transition whitespace-nowrap"
                 >
                     What Can I Cook?
                 </Link>
@@ -147,10 +148,10 @@ function Home() {
             </div>
 
             {/* Right Food Image */}
-            <div className="order-2 relative flex justify-center lg:justify-end">
+            <div className="order-2 relative flex justify-center md:justify-end">
 
                 {/* Orange Circle */}
-                <div className="absolute w-75 h-75 md:w-95 md:h-95 lg:w-107.5 lg:h-107.5 rounded-full border-4 border-orange-500/80">
+                <div className="absolute w-70 h-70 md:w-90 md:h-90 lg:w-102.5 lg:h-102.5 rounded-full border-8 border-orange-500/80">
                 </div>
 
                 {/* Food Image */}
@@ -207,29 +208,28 @@ function Home() {
             </p>
 
             <form
-            onSubmit={handleSearch}
-            className="mt-8 flex items-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full shadow-sm p-2"
-            >
-            <FiSearch
-                size={22}
-                className="text-gray-400 ml-4"
-            />
+                onSubmit={handleSearch}
+                className="mt-8 flex items-center w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full shadow-sm p-1.5"
+                >
+                <FiSearch
+                    className="w-5 h-5 min-w-5 min-h-5 shrink-0 text-gray-400 ml-3"
+                />
 
-            <input
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search for recipes..."
-                className="flex-1 px-4 py-3 outline-none text-gray-700 dark:text-white dark:bg-gray-800"
-            />
+                <input
+                    type="text"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Search for recipes..."
+                    className="flex-1 min-w-0 px-3 py-2.5 outline-none text-gray-700 dark:text-white dark:bg-gray-800"
+                />
 
-            <button
-                type="submit"
-                className="bg-orange-500 text-white px-7 py-3 rounded-full font-semibold hover:bg-orange-600 transition"
-            >
-                Search
-            </button>
-            </form>
+                <button
+                    type="submit"
+                    className="shrink-0 bg-orange-500 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-orange-600 transition"
+                >
+                    Search
+                </button>
+                </form>
 
         </div>
         </section>
@@ -312,19 +312,11 @@ function Home() {
                 </div>
 
                 <div className="flex justify-center">
-                    <div className="bg-white/20 rounded-full p-10 text-center">
-                    <div className="text-7xl">
-                        🥕
-                    </div>
-
-                    <p className="font-semibold mt-4">
-                        Your ingredients.
-                    </p>
-
-                    <p className="text-orange-100">
-                        Your next meal.
-                    </p>
-                    </div>
+                    <img
+                        src={cookFeature}
+                        alt="Cooking ingredients"
+                        className="w-80 h-80 md:w-96 md:h-96 object-contain"
+                    />
                 </div>
 
                 </div>

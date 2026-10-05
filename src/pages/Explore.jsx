@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import {
   searchMeals,
   getMealsByCategory,
+  getMealsByArea,
   getPopularMeals,
   filterVegetarianMeals,
   filterExcludedAreas,
@@ -13,7 +14,7 @@ import { FiSearch } from "react-icons/fi";
 
 function Explore() {
   const excludedAreas = [
-    "Thai",
+    "Thai"
   ];
 
   const [searchParams] = useSearchParams();
@@ -39,7 +40,39 @@ function Explore() {
     "Dessert",
     "Vegetarian",
   ];
+
+  const cuisines = [
+  "American",
+  "British",
+  "Canadian",
+  "Chinese",
+  "Croatian",
+  "Dutch",
+  "Egyptian",
+  "French",
+  "Greek",
+  "Indian",
+  "Irish",
+  "Italian",
+  "Jamaican",
+  "Japanese",
+  "Kenyan",
+  "Malaysian",
+  "Mexican",
+  "Moroccan",
+  "Polish",
+  "Portuguese",
+  "Russian",
+  "Spanish",
+  "Tunisian",
+  "Turkish",
+  "Vietnamese",
+  "Cambodian",
+];
   const filteredSuggestions = suggestions.filter((item) =>
+    item.toLowerCase().includes(search.toLowerCase())
+  );
+  const filteredCuisines = cuisines.filter((item) =>
     item.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -83,7 +116,8 @@ function Explore() {
         setSearched(true);
 
         try {
-            const data = await searchMeals(query);
+            let data = await searchMeals(query);
+            data = filterExcludedAreas(data, excludedAreas);
             setMeals(data);
         } catch (error) {
             console.error(error);
@@ -115,25 +149,39 @@ function Explore() {
     }
 
   async function handleSearch(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!search.trim()) {
-      return;
-    }
-
-    setLoading(true);
-    setSearched(true);
-
-    try {
-      const data = await searchMeals(search);
-      setMeals(data);
-    } catch (error) {
-      console.error(error);
-      setMeals([]);
-    } finally {
-      setLoading(false);
-    }
+  if (!search.trim()) {
+    return;
   }
+
+  setLoading(true);
+  setSearched(true);
+  setSelectedCategory("");
+
+  try {
+    const matchedCuisine = cuisines.find(
+      (cuisine) =>
+        cuisine.toLowerCase() === search.trim().toLowerCase()
+    );
+
+    let data;
+
+    if (matchedCuisine) {
+      data = await getMealsByArea(matchedCuisine);
+    } else {
+      data = await searchMeals(search);
+      data = filterExcludedAreas(data, excludedAreas);
+    }
+
+    setMeals(data);
+  } catch (error) {
+    console.error(error);
+    setMeals([]);
+  } finally {
+    setLoading(false);
+  }
+}
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -163,8 +211,8 @@ function Explore() {
         >
           <div className="flex items-center bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700 p-2">
             <FiSearch
-              size={22}
-              className="text-gray-400 ml-4"
+              
+              className="w-5 h-5 min-w-5 min-h-5 shrink-0 text-gray-400 ml-3"
             />
 
             <input
@@ -186,27 +234,76 @@ function Explore() {
               Search
             </button>
           </div>
-          {showSuggestions && search.trim() && filteredSuggestions.length > 0 && (
-            <div className="absolute left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden z-20">
+          {showSuggestions && search.trim() && (
+            <div className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl z-50 overflow-hidden">
 
-              {filteredSuggestions.map((suggestion) => (
-                <button
-                  key={suggestion}
-                  type="button"
-                  onClick={() => {
-                    setSearch(suggestion);
-                    setShowSuggestions(false);
-                  }}
-                  className="w-full flex items-center gap-3 px-5 py-3 text-left text-gray-700 dark:text-gray-200 hover:bg-orange-50 hover:text-orange-500 transition"
-                >
-                  <FiSearch
-                    size={17}
-                    className="text-gray-400"
-                  />
+              {filteredSuggestions.length > 0 && (
+                <div className="p-3">
+                  <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider px-3 py-2">
+                    Recipe Suggestions
+                  </p>
 
-                  <span>{suggestion}</span>
-                </button>
-              ))}
+                  {filteredSuggestions.slice(0, 6).map((item) => (
+                    <button
+                      key={item}
+                      type="button"
+                      onClick={async () => {
+                        setSearch(cuisine);
+                        setShowSuggestions(false);
+                        setSelectedCategory("");
+                        setLoading(true);
+                        setSearched(true);
+
+                        try {
+                          const data = await getMealsByArea(cuisine);
+                          setMeals(data);
+                        } catch (error) {
+                          console.error(error);
+                          setMeals([]);
+                        } finally {
+                          setLoading(false);
+                        }
+                      }}
+                      className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-gray-700 dark:text-gray-200 hover:bg-orange-50 dark:hover:bg-gray-700 transition"
+                    >
+                      <FiSearch
+                        
+                        className="w-5 h-5 min-w-5 min-h-5 shrink-0 text-gray-400 ml-3"
+                      />
+
+                      <span>{item}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {filteredCuisines.length > 0 && (
+                <div className="border-t border-gray-100 dark:border-gray-700 p-3">
+                  <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider px-3 py-2">
+                    Region / Cuisine
+                  </p>
+
+                  {filteredCuisines.slice(0, 8).map((cuisine) => (
+                    <button
+                      key={cuisine}
+                      type="button"
+                      onClick={() => {
+                        setSearch(cuisine);
+                        setShowSuggestions(false);
+                      }}
+                      className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-gray-700 dark:text-gray-200 hover:bg-orange-50 dark:hover:bg-gray-700 transition"
+                    >
+                      <span className="text-lg">🌎</span>
+
+                      <span>{cuisine}</span>
+
+                      <span className="ml-auto text-xs text-gray-400 dark:text-gray-500">
+                        Cuisine
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
 
             </div>
           )}

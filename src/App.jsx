@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 
@@ -12,10 +13,32 @@ import Profile from "./pages/Profile";
 
 import FavoriteProvider from "./context/FavoriteContext";
 
+function ScrollToTop() {
+  const { pathname, search, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) return;
+
+    const scrollToTop = () => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    requestAnimationFrame(scrollToTop);
+  }, [pathname, search, hash]);
+
+  return null;
+}
+
 function App() {
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+  }, []);
   return (
     <BrowserRouter>
       <FavoriteProvider>
+        <ScrollToTop />
         <Navbar />
 
         <main>

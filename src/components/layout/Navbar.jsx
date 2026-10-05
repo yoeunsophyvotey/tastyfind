@@ -219,6 +219,17 @@ function Navbar() {
                   </>
                 )}
               </NavLink>
+              <button
+                type="button"
+                onClick={toggleDarkMode}
+                className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-orange-500 transition text-left"
+              >
+                {darkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
+
+                <span>
+                  {darkMode ? "Light Mode" : "Dark Mode"}
+                </span>
+              </button>
 
             </div>
           </div>

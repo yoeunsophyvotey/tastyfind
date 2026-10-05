@@ -132,3 +132,16 @@ export async function getPopularMeals() {
 
   return meals.slice(0, 8);
 }
+
+export async function getMealsByArea(area) {
+  const response = await fetch(
+    `${BASE_URL}/filter.php?a=${encodeURIComponent(area)}`
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch area recipes");
+  }
+
+  const data = await response.json();
+  return data.meals || [];
+}

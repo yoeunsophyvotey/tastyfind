@@ -2,26 +2,24 @@ import {
   FiInstagram,
   FiFacebook,
   FiGithub,
-  FiArrowRight,
 } from "react-icons/fi";
 
 import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="bg-gray-950 text-white mt-0">
-      
+    <footer className="bg-gray-950 text-white border-t border-white/20">
+      <div className="max-w-7xl mx-auto px-6 py-12 md:py-14">
 
-      {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-6 py-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 lg:gap-16">
+
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link
               to="/"
               className="inline-block text-2xl font-bold text-orange-500 hover:text-orange-400 transition"
             >
-              TastyFind 🍴
+              TastyFind
             </Link>
 
             <p className="text-gray-400 mt-4 max-w-md leading-7">
@@ -33,23 +31,23 @@ function Footer() {
             <div className="flex items-center gap-3 mt-6">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-orange-500 hover:border-orange-500 transition"
+                className="w-9 h-9 rounded-full bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-orange-500 hover:border-orange-500 transition"
               >
-                <FiInstagram size={18} />
+                <FiInstagram size={17} />
               </a>
 
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-orange-500 hover:border-orange-500 transition"
+                className="w-9 h-9 rounded-full bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-orange-500 hover:border-orange-500 transition"
               >
-                <FiFacebook size={18} />
+                <FiFacebook size={17} />
               </a>
 
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-orange-500 hover:border-orange-500 transition"
+                className="w-9 h-9 rounded-full bg-gray-900 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-orange-500 hover:border-orange-500 transition"
               >
-                <FiGithub size={18} />
+                <FiGithub size={17} />
               </a>
             </div>
           </div>
@@ -91,7 +89,7 @@ function Footer() {
             </div>
           </div>
 
-          {/* Company */}
+          {/* TastyFind */}
           <div>
             <h3 className="font-semibold text-white mb-5">
               TastyFind
@@ -120,18 +118,20 @@ function Footer() {
               </Link>
             </div>
           </div>
+
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-gray-800 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-gray-500">
+        <div className="border-t border-gray-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-sm text-gray-500 text-center sm:text-left">
             © 2026 TastyFind. All rights reserved.
           </p>
 
           <p className="text-sm text-gray-600">
-            Discover · Cook · Enjoy 🍊
+            Discover · Cook · Enjoy
           </p>
         </div>
+
       </div>
     </footer>
   );

@@ -4,11 +4,14 @@ import {
   FiSearch,
   FiArrowRight,
   FiClock,
+  FiShoppingBag,
 } from "react-icons/fi";
+
 
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useFavorites } from "../context/FavoriteContext";
+
 
 function Profile() {
   const { favorites } = useFavorites();
@@ -61,7 +64,7 @@ function Profile() {
               </p>
 
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mt-2">
-                Welcome back, Chef! 👋
+                Welcome back, Chef! 
               </h1>
 
               <p className="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl">
@@ -237,29 +240,29 @@ function Profile() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Link
-              to="/explore"
-              className="group bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-3xl p-7 hover:shadow-xl transition"
-            >
-              <div className="flex items-start justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-orange-50 dark:bg-orange-500/10 text-orange-500 flex items-center justify-center">
-                  <FiSearch size={24} />
+              <Link
+                to="/explore"
+                className="group bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-3xl p-7 hover:shadow-xl transition"
+              >
+                <div className="flex items-start justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-orange-50 dark:bg-orange-500/10 text-orange-500 flex items-center justify-center">
+                    <FiSearch size={24} />
+                  </div>
+
+                  <FiArrowRight
+                    size={22}
+                    className="text-gray-300 dark:text-gray-600 group-hover:text-orange-500 group-hover:translate-x-1 transition"
+                  />
                 </div>
 
-                <FiArrowRight
-                  size={22}
-                  className="text-gray-300 dark:text-gray-600 group-hover:text-orange-500 group-hover:translate-x-1 transition"
-                />
-              </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mt-6">
+                  Discover Something New
+                </h3>
 
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mt-6">
-                Discover Something New
-              </h3>
-
-              <p className="text-gray-500 dark:text-gray-400 mt-2">
-                Explore recipes and find your next favorite meal.
-              </p>
-            </Link>
+                <p className="text-gray-500 dark:text-gray-400 mt-2">
+                  Explore recipes and find your next favorite meal.
+                </p>
+              </Link>
 
             <Link
               to="/cook"
@@ -267,12 +270,12 @@ function Profile() {
             >
               <div className="flex items-start justify-between">
                 <div className="w-12 h-12 rounded-2xl bg-white/15 flex items-center justify-center">
-                  <span className="text-2xl">🥕</span>
+                  <FiShoppingBag size={24} />
                 </div>
 
                 <FiArrowRight
                   size={22}
-                  className="group-hover:translate-x-1 transition"
+                  className="text-white/60 group-hover:text-white group-hover:translate-x-1 transition"
                 />
               </div>
 
@@ -281,8 +284,7 @@ function Profile() {
               </h3>
 
               <p className="text-orange-100 mt-2">
-                Tell us what ingredients you have and discover recipes you
-                can make right now.
+                Tell us what ingredients you have and discover recipes you can make right now.
               </p>
             </Link>
           </div>
