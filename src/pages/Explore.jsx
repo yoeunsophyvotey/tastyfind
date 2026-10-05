@@ -229,7 +229,7 @@ function Explore() {
 
             <button
               type="submit"
-              className="shrink-0 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-full transition"
+              className="shrink-0 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition"
             >
               Search
             </button>
