@@ -209,9 +209,9 @@ function Explore() {
           onSubmit={handleSearch}
           className="max-w-2xl mx-auto mt-10 relative"
         >
-          <div className="flex items-center bg-white dark:bg-gray-800 rounded-full shadow-sm border border-gray-200 dark:border-gray-700 p-2">
+          <div className="flex items-center w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full shadow-sm p-1.5">
+
             <FiSearch
-              
               className="w-5 h-5 min-w-5 min-h-5 shrink-0 text-gray-400 ml-3"
             />
 
@@ -223,19 +223,21 @@ function Explore() {
                 setShowSuggestions(true);
               }}
               onFocus={() => setShowSuggestions(true)}
-              placeholder="Search recipes..."
-              className="flex-1 px-4 py-3 outline-none text-gray-700 dark:text-gray-100 bg-transparent"
+              placeholder="Search for recipes..."
+              className="flex-1 min-w-0 px-3 py-2.5 outline-none text-gray-700 dark:text-white dark:bg-gray-800"
             />
 
             <button
               type="submit"
-              className="shrink-0 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition"
+              className="shrink-0 bg-orange-500 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-orange-600 transition"
             >
               Search
             </button>
+
           </div>
+
           {showSuggestions && search.trim() && (
-            <div className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl z-50 overflow-hidden">
+             <div className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl z-50 overflow-hidden">
 
               {filteredSuggestions.length > 0 && (
                 <div className="p-3">
