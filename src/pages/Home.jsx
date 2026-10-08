@@ -148,14 +148,16 @@ function Home() {
             </div>
 
             {/* Right Food Image */}
-            <div className="order-2 relative flex justify-center md:justify-end">
+           <div className="order-2 relative flex justify-center md:justify-end">
+
+            <div className="relative w-70 h-70 md:w-90 md:h-90 lg:w-102.5 lg:h-102.5">
 
                 {/* Orange Circle */}
-                <div className="absolute w-70 h-70 md:w-90 md:h-90 lg:w-102.5 lg:h-102.5 rounded-full border-8 border-orange-500/80">
+                <div className="absolute inset-0 rounded-full border-8 border-orange-500/80">
                 </div>
 
                 {/* Food Image */}
-                <div className="relative w-70 h-70 md:w-90 md:h-90 lg:w-102.5 lg:h-102.5 rounded-full overflow-hidden border-8 border-white shadow-xl">
+                <div className="relative w-full h-full rounded-full overflow-hidden border-8 border-white shadow-xl">
 
                 <img
                     src={heroFood}
@@ -166,7 +168,7 @@ function Home() {
                 </div>
 
                 {/* Favorite Recipe Card */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 lg:left-4 lg:translate-x-0 bg-white rounded-2xl shadow-xl px-5 py-4 flex items-center gap-3 min-w-47.5">
+                <div className="absolute bottom-0 left-0 bg-white rounded-2xl shadow-xl px-5 py-4 flex items-center gap-3 min-w-47.5">
 
                 <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center">
                     <FiHeart
@@ -189,6 +191,7 @@ function Home() {
 
             </div>
 
+            </div>
             </div>
         </div>
         </section>

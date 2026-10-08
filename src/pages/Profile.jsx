@@ -77,9 +77,15 @@ function Profile() {
       </section>
 
       {/* Stats */}
+
       <section className="max-w-6xl mx-auto px-6 -mt-8 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm">
+
+          {/* Favorite Recipes */}
+          <Link
+            to="/favorites"
+            className="group bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-lg transition"
+          >
             <div className="w-11 h-11 rounded-xl bg-red-50 dark:bg-red-500/10 text-red-500 flex items-center justify-center">
               <FiHeart size={22} />
             </div>
@@ -91,9 +97,14 @@ function Profile() {
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-1">
               {favorites.length}
             </h2>
-          </div>
+          </Link>
 
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm">
+
+          {/* Discover Recipes */}
+          <Link
+            to="/explore"
+            className="group bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-lg transition"
+          >
             <div className="w-11 h-11 rounded-xl bg-orange-50 dark:bg-orange-500/10 text-orange-500 flex items-center justify-center">
               <FiSearch size={22} />
             </div>
@@ -105,11 +116,13 @@ function Profile() {
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-1">
               Explore
             </h2>
-          </div>
+          </Link>
 
+
+          {/* Recently Viewed */}
           <Link
             to="/#recently-viewed"
-            className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-lg transition"
+            className="group bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-lg transition"
           >
             <div className="w-11 h-11 rounded-xl bg-green-50 dark:bg-green-500/10 text-green-500 flex items-center justify-center">
               <FiClock size={22} />
@@ -123,6 +136,7 @@ function Profile() {
               {recentlyViewed.length}
             </h2>
           </Link>
+
         </div>
       </section>
 
